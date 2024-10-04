@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation | Urban Plate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+                background-size: cover;
+            color: #fff;
+        }
+
+        header {
+            background-color: rgba(51, 51, 51, 0.7);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #555;
+        }
+
+        nav {
+            background-color: rgba(68, 68, 68, 0.7);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-bottom: 2px solid #555;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .reservation-container {
+            background-color: rgba(90, 90, 90, 0.603);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 350px;
+            text-align: center;
+            margin: 50px auto;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="time"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #090b0ceb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #67686a;
+        }
+
+        .error-message {
+            color: red;
+            display: none;
+            margin-bottom: 10px;
+        }
+
+        .success-message {
+            color: green;
+            display: none;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: rgba(51, 51, 51, 0.7);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            border-top: 2px solid #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Urban Plate</h1>
+    </header>
+
+    <nav>
+        <a onclick="goToHomePage()">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="reservation.html">Reservation</a>
+    </nav>
+
+    <section class="reservation-container">
+        <h2>Table Reservation</h2>
+        <div class="success-message" id="success-message">Your reservation has been successfully submitted!</div>
+        <div class="error-message" id="error-message">Please fill out all fields correctly.</div>
+
+        <form id="reservation-form">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="phone" placeholder="Phone Number" required>
+            <input type="date" id="date" required>
+            <input type="time" id="time" required>
+            <input type="number" id="guests" placeholder="Number of Guests" min="1" max="20" required>
+            <button type="button" onclick="submitReservation()">Reserve Now</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Urban Plate. All rights reserved. | <a href="https://www.urbanplate.com/privacy-policy"
+                target="_blank" style="color: #ddd; text-decoration: underline;">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        function goToHomePage() {
+            window.location.href = 'home.html'; // Redirect to your homepage URL
+        }
+
+        function submitReservation() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
+            const guests = document.getElementById("guests").value;
+
+            if (name && email && phone && date && time && guests) {
+                // Show success message
+                document.getElementById("success-message").style.display = "block";
+                document.getElementById("error-message").style.display = "none";
+                alert("Reservation submitted:\n" +
+                    "Name: " + name + "\n" +
+                    "Email: " + email + "\n" +
+                    "Phone: " + phone + "\n" +
+                    "Date: " + date + "\n" +
+                    "Time: " + time + "\n" +
+                    "Guests: " + guests);
+            } else {
+                // Show error message
+                document.getElementById("error-message").style.display = "block";
+                document.getElementById("success-message").style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
